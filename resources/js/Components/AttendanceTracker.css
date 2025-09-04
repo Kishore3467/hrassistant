@@ -1,0 +1,31 @@
+.attendance-tracker.card {
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.attendance-tracker h3 {
+  margin-bottom: 10px;
+}
+
+.attendance-tracker .stats {
+  display: flex;
+  gap: 20px;
+}
+
+.attendance-tracker .stats div {
+  text-align: center;
+}
+
+.attendance-tracker .stats strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.attendance-tracker .stats span {
+  font-size: 0.9rem;
+  color: #555;
+}

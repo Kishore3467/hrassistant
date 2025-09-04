@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+ 
+.about-section {
+  background: #f8f9fc;
+  padding: 90px 20px;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  /* background-image: url('/public/banner.jpg');
+    filter: blur(10px); */
+}
+ 
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 60px;
+}
+
+
+.bt{
+  text-decoration: none;
+}
+ 
+/* IMAGE + OVERLAY */
+/* Base styles */
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  overflow: hidden;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+ 
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+ 
+.about-image:hover .image-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+ 
+.about-image {
+  position: relative; /* ensure overlay absolute positioning */
+  max-width: 550px;
+  margin: 0 auto; /* center on small screens */
+}
+ 
+.about-image img {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: block;
+}
+ 
+.about-image:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Responsive adjustments */
+ 
+/* Tablets and below */
+@media (max-width: 900px) {
+  .about-image {
+    max-width: 450px;
+  }
+  .image-overlay {
+    font-size: 16px;
+    padding: 18px;
+  }
+}
+ 
+/* Mobile devices */
+@media (max-width: 600px) {
+  .about-image {
+    max-width: 350px;
+  }
+  .image-overlay {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
+ 
+/* Very small phones */
+@media (max-width: 400px) {
+  .about-image {
+    max-width: 280px;
+  }
+  .image-overlay {
+    font-size: 13px;
+    padding: 12px;
+  }
+}
+ 
+ 
+/* TEXT CONTENT */
+.about-content {
+  flex: 1.3;
+  min-width: 380px;
+}
+ 
+.about-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0066ff;
+  margin-bottom: 12px;
+}
+ 
+.about-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0a0f1c;
+  margin-bottom: 12px;
+}
+ 
+.about-title span {
+  color: #0066ff;
+}
+ 
+.about-description {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: #444;
+}
+ 
+/* BUTTON */
+.about-btn {
+  background: transparent;
+  color: #1a73e8;
+  padding: 12px 30px;
+  border: 2px solid #1a73e8;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+ 
+.about-btn:hover {
+  background: #1a73e8;
+  color: #fff;
+  transform: translateY(-2px);
+}
+ 
+/* PARTNERS */
+.partners-section {
+  margin-top: 50px;
+  text-align: center;
+}
+ 
+.partners-title {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0066ff;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+ 
+.partners-logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+ 
+.partner-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: 250px; /* increased height */
+  text-align: center;
+}
+ 
+.partner-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+ 
+.partner-card img {
+  max-height: 100px; /* increased image height */
+  width: auto;
+  margin-bottom: 15px;
+}
+ 
+.partner-content {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.3;
+}
+ 
+/* FADE ANIMATIONS */
+.fade-in-left {
+  animation: fadeInLeft 0.8s ease forwards;
+}
+ 
+.fade-in-right {
+  animation: fadeInRight 0.8s ease forwards;
+}
+ 
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+ 
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+ 
+/* Base styles (desktop and above) */
+.partners-title {
+  font-size: 28px;
+  margin: 40px 0;
+}
+ 
+.partners-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 0 30px;
+}
+ 
+.partner-card {
+  height: 280px;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+ 
+.partner-card img {
+  max-height: 100px;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+ 
+.partner-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+ 
+/* Medium devices (tablets, small laptops) */
+@media (max-width: 900px) {
+  .partners-title {
+    font-size: 22px;
+    margin: 30px 0;
+  }
+ 
+  .partners-logos {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 0 20px;
+  }
+ 
+  .partner-card {
+    height: 230px;
+    padding: 25px 15px;
+  }
+ 
+  .partner-card img {
+    max-height: 90px;
+    margin-bottom: 14px;
+  }
+ 
+  .partner-content {
+    font-size: 15px;
+  }
+}
+ 
+/* Small devices (phones, small tablets) */
+@media (max-width: 600px) {
+  .partners-title {
+    font-size: 20px;
+    margin: 20px 0;
+  }
+ 
+  .partners-logos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+ 
+  .partner-card {
+    height: auto;
+    padding: 20px 15px;
+  }
+ 
+  .partner-card img {
+    max-height: 80px;
+    margin-bottom: 12px;
+  }
+ 
+  .partner-content {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+ 
+/* Extra small devices (very small phones) */
+@media (max-width: 400px) {
+  .partners-title {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+ 
+  .partner-content {
+    font-size: 13px;
+  }
+ 
+  .partner-card img {
+    max-height: 70px;
+  }
+}
+ 

@@ -1,0 +1,127 @@
+/* Container and Background */
+ 
+.contact-section {
+  max-width: 960px;
+  margin: 80px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: #f8f9fc;
+ 
+}
+ 
+/* Title */
+ 
+.contact-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0a0f1c; /* navy */
+  margin-bottom: 12px;
+}
+ 
+/* Subtitle */
+ 
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+ 
+/* Main container with form and map side by side */
+ 
+.contact-container {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+ 
+/* Form styles */
+ 
+.contact-form {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+/* Inputs & Textarea */
+ 
+.contact-form input,
+.contact-form textarea {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  resize: vertical;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+ 
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #aaa;
+}
+ 
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #0b0b47;
+  box-shadow: 0 0 8px rgba(11, 11, 71, 0.25);
+}
+ 
+/* Button */
+ 
+.contact-form button {
+  background-color: rgb(49, 25, 72);
+  color: white;
+  padding: 18px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+ 
+.contact-form button:hover {
+  border-color: #1a73e8;;
+  color: white;
+}
+ 
+/* Map container */
+ 
+.contact-map {
+  flex: 1 1 400px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  height: 370px; /* set fixed height */
+  max-height: 370px; /* ensure max height is also fixed */
+}
+ 
+.contact-map iframe {
+  width: 100%;
+  height: 100%; /* fill entire container */
+  border: none;
+  display: block;
+  border-radius: 14px;
+}
+ 
+ 
+/* Responsive */
+ 
+@media (max-width: 720px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .contact-form,
+  .contact-map {
+    flex: 1 1 100%;
+  }
+}
+ 

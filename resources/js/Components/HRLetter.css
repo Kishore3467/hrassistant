@@ -1,0 +1,362 @@
+/* -------------------------- GENERAL RESET -------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+  color: #333;
+}
+
+/* -------------------------- DASHBOARD LAYOUT -------------------------- */
+.dashboard-container-existing {
+  display: flex;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+/* -------------------------- SIDEBAR -------------------------- */
+.sidebar-existing {
+  width: 220px;
+  background: #0d6efd;
+  color: #fff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInLeft 0.8s ease forwards;
+}
+
+.sidebar-existing h2 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.sidebar-existing ul {
+  list-style: none;
+}
+
+.sidebar-existing li {
+  margin: 1rem 0;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sidebar-existing li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* -------------------------- MAIN CONTENT -------------------------- */
+.main-content-existing {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  animation: fadeInRight 0.8s ease forwards;
+}
+
+.hr-letter-container-existing {
+  width: 100%;
+  max-width: 650px;
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* -------------------------- HEADINGS -------------------------- */
+.hr-letter-container-existing h2 {
+  text-align: center;
+  color: #0d6efd;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* -------------------------- FORM -------------------------- */
+.form-group-existing {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+.form-group-existing label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-existing {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-existing:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.4);
+}
+
+/* -------------------------- BUTTONS -------------------------- */
+.button-existing {
+  background: #0d6efd;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.button-existing:hover {
+  background: #0954c1;
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+.close-btn {
+  background: #dc3545;
+}
+
+.close-btn:hover {
+  background: #a71d2a;
+}
+
+/* -------------------------- MODAL -------------------------- */
+.overlay-existing {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-existing {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: zoomIn 0.5s ease forwards;
+}
+
+.modal-existing h2 {
+  color: #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.modal-preview {
+  background: #f5f6fa;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Courier New', Courier, monospace;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* -------------------------- ANIMATIONS -------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* -------------------------- RESPONSIVE -------------------------- */
+@media (max-width: 1024px) {
+  .sidebar-existing {
+    width: 180px;
+    padding: 1.5rem 1rem;
+  }
+
+  .hr-letter-container-existing {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container-existing {
+    flex-direction: column;
+  }
+
+  .sidebar-existing {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  .hr-letter-container-existing {
+    width: 95%;
+    margin: 1rem auto;
+    padding: 1.5rem 1.5rem;
+  }
+
+  .modal-existing {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-existing {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .button-existing {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* -------------------------- SIDEBAR -------------------------- */
+.sidebar-existing {
+  width: 240px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0d6efd 0%, #0056b3 100%);
+  color: #fff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  position: relative;
+  animation: fadeInLeft 0.8s ease forwards;
+  z-index: 100;
+}
+
+.sidebar-existing h2 {
+  margin-bottom: 2rem;
+  font-size: 1.9rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.sidebar-existing ul {
+  list-style: none;
+  flex: 1;
+}
+
+.sidebar-existing li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-existing li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+  border-radius: 10px 0 0 10px;
+}
+
+.sidebar-existing li:hover::before {
+  width: 100%;
+}
+
+.sidebar-existing li:hover {
+  transform: translateX(5px);
+  font-weight: 600;
+}
+
+.sidebar-existing li.active {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  border-left: 4px solid #ffc107;
+}
+
+/* Optional: Add icons to menu items */
+.sidebar-existing li svg {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Collapse Sidebar for tablet/mobile */
+@media (max-width: 768px) {
+  .sidebar-existing {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 0;
+    padding: 1rem;
+    box-shadow: none;
+  }
+
+  .sidebar-existing li {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.5rem 0.3rem;
+    margin: 0;
+  }
+
+  .sidebar-existing li::before {
+    display: none;
+  }
+}
+

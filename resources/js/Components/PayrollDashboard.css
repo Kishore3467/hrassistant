@@ -1,0 +1,269 @@
+/* Payroll Dashboard CSS */
+.pd-dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+}
+
+/* Sidebar */
+.pd-sidebar {
+  width: 250px;
+  background: #1f2937;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.pd-logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.pd-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pd-sidebar li {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.pd-sidebar li:hover {
+  background: #374151;
+}
+
+.pd-sidebar li svg {
+  margin-right: 10px;
+}
+
+/* Main Content */
+.pd-main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.pd-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pd-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pd-icon {
+  color: #1f2937;
+}
+
+.pd-profile {
+  font-weight: bold;
+}
+
+/* Buttons */
+.pd-primary-btn {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.3s;
+}
+
+.pd-primary-btn:hover {
+  background: #2563eb;
+}
+
+.pd-back-btn {
+  margin-bottom: 15px;
+}
+
+/* Employee Table */
+.pd-employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.pd-employee-table th, .pd-employee-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pd-employee-table th {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.pd-employee-table tr:hover {
+  background: #f1f5f9;
+}
+
+/* Action Buttons */
+.pd-action-btn {
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pd-edit {
+  background: #facc15;
+  color: #1f2937;
+}
+
+.pd-edit:hover {
+  background: #eab308;
+}
+
+.pd-delete {
+  background: #ef4444;
+  color: #fff;
+}
+
+.pd-delete:hover {
+  background: #dc2626;
+}
+
+/* Modal */
+.pd-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 41, 55, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.pd-modal {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.pd-modal-form input,
+.pd-modal-form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.pd-modal-form input:focus,
+.pd-modal-form select:focus {
+  border-color: #3b82f6;
+}
+
+.pd-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.pd-cancel-btn {
+  background: #9ca3af;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pd-cancel-btn:hover {
+  background: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .pd-dashboard-container {
+    flex-direction: column;
+  }
+
+  .pd-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .pd-sidebar ul {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pd-main-content {
+    padding: 15px;
+  }
+
+  .pd-employee-table th,
+  .pd-employee-table td {
+    padding: 8px 10px;
+  }
+
+  .pd-modal {
+    width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pd-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pd-topbar-right {
+    margin-top: 10px;
+  }
+
+  .pd-employee-table {
+    font-size: 12px;
+  }
+
+  .pd-primary-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .pd-modal {
+    padding: 20px;
+  }
+
+  .pd-modal-form input,
+  .pd-modal-form select {
+    padding: 8px 10px;
+  }
+}

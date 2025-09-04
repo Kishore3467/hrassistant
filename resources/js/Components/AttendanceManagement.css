@@ -1,0 +1,85 @@
+.input-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px; /* space between input and button */
+  margin-bottom: 25px;
+}
+
+.input-box {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  outline: none;
+  width: 280px;
+  height: 45px; /* fixed height */
+  transition: 0.3s;
+}
+
+.input-box:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+}
+
+/* ✅ Proper Button Styling */
+.btn {
+  padding: 10px 25px;
+  height: 45px; /* same as input */
+  background: #2ecc71;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
+
+.webcam-box {
+  margin: 20px auto;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.webcam-preview {
+  width: 300px;
+  height: 220px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.webcam-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+  font-style: italic;
+}
+
+.photo-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+
+.photo-thumb:hover {
+  transform: scale(1.2);
+}
+

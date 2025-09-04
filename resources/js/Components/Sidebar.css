@@ -1,0 +1,18 @@
+.sidebar1{
+  width:76px;
+  background:#172648;
+  color:#e9edf5;
+  padding:14px 10px;
+  display:flex;flex-direction:column;align-items:center;
+  margin-right: -2px;
+}
+
+.sb-logo{width:44px;height:44px;border-radius:12px;background:#0f1b36;display:grid;place-items:center;margin-bottom:10px}
+.logo-dot{width:18px;height:18px;border-radius:6px;background:#35d0c2;}
+
+.sb-list{list-style:none;margin:0;padding:6px 0;width:100%}
+.sb-item{margin:8px 0}
+.sb-item a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0;border-radius:12px;color:#d7dff1;font-size:12px}
+.sb-item .sb-ico{font-size:18px;filter:saturate(1.1)}
+.sb-item.active a, .sb-item a:hover{background:#22386d;color:#fff}
+.sb-divider{height:5px;background:#2a3b64;margin:10px 0;opacity:.6}

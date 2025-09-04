@@ -1,0 +1,239 @@
+/* TaskDashboard.css */
+
+/* General page setup */
+.task-dashboard-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  color: #333;
+}
+
+/* Header */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #1f2937;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.task-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.task-header button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.task-header button:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Table styling */
+.task-table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.task-table th, .task-table td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.task-table th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.task-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Buttons inside table */
+.task-table button {
+  margin-right: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.task-table button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.task-table button:first-of-type {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.task-table button:last-of-type {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(31,41,55,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Close icon */
+.close-icon {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+.close-icon:hover {
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+/* Modal form */
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.modal label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.modal input, 
+.modal select {
+  margin-top: 5px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.modal input:focus, .modal select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59,130,246,0.3);
+}
+
+/* Modal buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-buttons button:first-child {
+  background-color: #9ca3af;
+  color: #fff;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #6b7280;
+}
+
+.modal-buttons button:last-child {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #2563eb;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .modal {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .task-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-table th, .task-table td {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}

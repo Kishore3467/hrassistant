@@ -1,0 +1,159 @@
+.instructors .bg_btn {
+  margin-bottom: 25px;
+}
+
+.single-instructor {
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 35px;
+  transition: 0.5s;
+  margin-bottom: 30px;
+}
+
+.single-instructor h3 a {
+  transition: 0.5s;
+}
+
+.single-instructor h3 a:hover,
+.single-instructor h3 a:focus {
+  color: #0d5ff9;
+}
+
+.inimage {
+  position: relative;
+  width: 245px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.single-instructor h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.single-instructor h3 a {
+  color: #222;
+}
+
+.single-instructor .designation {
+  font-size: 15px;
+  color: #0d5ff9;
+  font-weight: 500;
+}
+
+.single-instructor .social-link {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-1000%);
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.single-instructor:hover .social-link {
+  transform: translateX(-50%);
+}
+
+.single-instructor .sicon {
+  position: absolute;
+  bottom: 25px;
+  right: 36px;
+  transition: 0.5s;
+}
+
+.single-instructor:hover .sicon {
+  transform: translateX(1000%);
+}
+
+.single-instructor .social-link ul {
+  list-style-type: none;
+}
+
+.single-instructor .social-link ul li {
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.sicon a,
+.social-link ul li a {
+  width: 32px;
+  height: 32px;
+  line-height: 35px;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.sicon a {
+  background: #0d5ff9;
+  color: #fff;
+}
+
+.inmeta {
+  border-top: 1px solid #f5f5f5;
+  padding-top: 10px;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+.inmeta span p,
+.inmeta span i {
+  display: inline-block;
+  color: #555;
+}
+
+.inmeta span i {
+  margin-right: 5px;
+}
+
+.inmeta span {
+  color: #7f7f7f;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.fb_bg {
+  background: #1877f2;
+}
+
+.tw_bg {
+  background: #00acee;
+}
+
+.li_bg {
+  background: #0a66c2;
+}
+
+/* Responsive 3 columns */
+@media (min-width: 992px) {
+  .instructors .row > .col-xl-3 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 991px) {
+  .instructors .row > .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .instructors .row > .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .inimage {
+    width: 200px;
+  }
+}

@@ -1,0 +1,28 @@
+.employee-profile-card {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.employee-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.employee-profile-card h2 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.employee-profile-card p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 16px;
+}

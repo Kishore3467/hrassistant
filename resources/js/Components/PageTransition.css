@@ -1,0 +1,31 @@
+.book-animation {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
+  animation: bookOpen 1s ease forwards;
+  transform-origin: center;
+}
+
+@keyframes bookOpen {
+  0% {
+    transform: scaleX(0) translateX(-50%);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(1.2) translateX(-50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1) translateX(-50%);
+    opacity: 0;
+  }
+}
+
+.page-hidden {
+  visibility: hidden;
+}

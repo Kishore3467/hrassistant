@@ -1,0 +1,148 @@
+/* ====== Layout ====== */
+.privacy-container {
+  display: flex;
+  min-height: 100vh;
+  background: #d47bf2;
+  font-family: "Inter", sans-serif;
+}
+
+/* ====== Sidebar ====== */
+.sidebar {
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid #e0e6ef;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-item {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  
+}
+
+.sidebar-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 12px 15px;
+  background: #f5f7fa;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title:hover {
+  background: #e8f0ff;
+  color: #0073e6;
+}
+
+.sidebar-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+  opacity: 0;
+}
+
+.sidebar-dropdown.open {
+  max-height: 300px; /* enough to show items */
+  opacity: 1;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 10px 15px;
+  margin: 0;
+}
+
+.sidebar-list li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sidebar-list li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar-list li:hover {
+  color: #0073e6;
+}
+
+/* ====== Main Content ====== */
+.content {
+  flex: 1;
+  padding: 40px 60px;
+  /* background: #7bdfe7; */
+  background-image: url('/public/zp-performance-banimg.jpg');
+  border-radius: 12px;
+  margin: 2px;
+  box-shadow: 0 6px 20px rgba(181, 203, 51, 0.05);
+  animation: fadeInUp 0.6s ease both;
+}
+
+.content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.content h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.content strong {
+  color: #222;
+}
+
+.content a {
+  color: #0073e6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+.last-updated {
+  background: #f5f7fa;
+  padding: 10px 15px;
+  border-left: 4px solid #0073e6;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* ====== Animation ====== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

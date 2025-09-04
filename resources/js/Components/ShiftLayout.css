@@ -1,0 +1,162 @@
+.layout {
+  font-family: Arial, sans-serif;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ Top Navigation */
+.topnav {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 40px;
+}
+
+.topnav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.topnav .tab {
+  margin-right: 30px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  padding-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.topnav .tab.active {
+  border-bottom: 3px solid #2563eb;
+  color: #2563eb;
+}
+
+/* ✅ Container */
+.container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Sidebar */
+.sidebar {
+  width: 240px;
+  background: #f7f7f7;
+  border-right: 1px solid #ddd;
+  padding: 25px 15px;
+  transition: width 0.3s ease;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .side-link {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #444;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.sidebar .side-link:hover {
+  background: #eee;
+  transform: translateX(5px);
+}
+
+.sidebar .side-link.active {
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+}
+
+/* ✅ Collapsed Sidebar (Mobile) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 15px 5px;
+  }
+  .sidebar .side-link {
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+  }
+  .sidebar .side-link::after {
+    display: none;
+  }
+}
+
+/* ✅ Main Content */
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.content-inner {
+  width: 100%;
+  max-width: 1000px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ✅ Cards */
+.card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #222;
+}
+
+/* ✅ Table */
+.permissions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.permissions-table th,
+.permissions-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.permissions-table th {
+  background: #f1f1f1;
+  font-weight: bold;
+}
+
+.permissions-table td {
+  background: #fff;
+}
+
+/* ✅ Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

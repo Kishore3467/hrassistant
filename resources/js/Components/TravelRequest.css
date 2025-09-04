@@ -1,0 +1,84 @@
+.travel-container {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+  background: #f9f9fb;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form card */
+.travel-form-card {
+  flex: 1;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.travel-form-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #00bcd4;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  background: #0097a7;
+}
+
+/* Travel request list */
+.travel-list-card {
+  flex: 2;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.travel-list-card h2 {
+  margin-bottom: 15px;
+}
+
+.travel-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.travel-table th,
+.travel-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.travel-table th {
+  background: #f1f1f1;
+}

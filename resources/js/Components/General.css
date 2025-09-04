@@ -1,0 +1,86 @@
+/* === Content Wrapping === */
+.pro-content {
+  display: flex;
+  justify-content: center;
+}
+
+.pro-content-inner {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* === Card === */
+.pro-card {
+  background: white;
+  padding: 20px 24px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.pro-card h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.pro-card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.pro-card select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* === Table === */
+.pro-permissions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.pro-permissions-table th,
+.pro-permissions-table td {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.pro-permissions-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* === Extra Options === */
+.extra-options {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.sidebar-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-tabs button {
+  padding: 8px 16px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar-tabs button.active-tab {
+  background: #007bff;
+  color: white;
+}

@@ -1,0 +1,283 @@
+/* LeaveManagement.css */
+.leave-management-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #333;
+  margin-top: 4rem;
+}
+ 
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+ 
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+ 
+.page-subtitle {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0.5rem 0 0;
+}
+ 
+.controls-section {
+  margin-bottom: 1.5rem;
+}
+ 
+.search-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+ 
+.search-box {
+  position: relative;
+  flex-grow: 1;
+}
+ 
+.search-box input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+ 
+.search-icon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #95a5a6;
+}
+ 
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+ 
+.filter-dropdown label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+ 
+.filter-dropdown select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+ 
+.table-responsive {
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+ 
+.leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+ 
+.leave-table th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 2px solid #dee2e6;
+}
+ 
+.leave-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: top;
+}
+ 
+.leave-table tr:hover {
+  background-color: #f8f9fa;
+}
+ 
+.text-left {
+  text-align: left;
+}
+ 
+.text-center {
+  text-align: center;
+}
+ 
+.employee-info {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.employee-name {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+ 
+.employee-email {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+ 
+.duration-badge {
+  display: inline-block;
+  background-color: #e8f4fd;
+  color: #3498db;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+ 
+.reason-container strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+ 
+.reason-container p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 0.85rem;
+}
+ 
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+ 
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+ 
+.status-badge.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+ 
+.status-badge.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+ 
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+ 
+.action-buttons button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+ 
+.btn-approve {
+  background-color: #28a745;
+  color: white;
+}
+ 
+.btn-approve:hover {
+  background-color: #218838;
+}
+ 
+.btn-approve:disabled {
+  background-color: #b8d9c2;
+  cursor: not-allowed;
+}
+ 
+.btn-reject {
+  background-color: #dc3545;
+  color: white;
+}
+ 
+.btn-reject:hover {
+  background-color: #c82333;
+}
+ 
+.btn-reject:disabled {
+  background-color: #e8b5ba;
+  cursor: not-allowed;
+}
+ 
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+ 
+@media (max-width: 768px) {
+  .search-filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+ 
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+ 
+/* Add these styles to your existing CSS */
+.notification-banner {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideIn 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6rem;
+}
+ 
+.notification-banner.approved {
+  background-color: #28a745;
+}
+ 
+.notification-banner.rejected {
+  background-color: #dc3545;
+}
+ 
+.notification-icon {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+ 
+@keyframes slideIn {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+ 
+/* Rest of your existing CSS remains the same */
+ 

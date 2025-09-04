@@ -1,0 +1,269 @@
+/* Onboarding content layout */
+.onboarding-content {
+  display: flex;
+  gap: 25px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Sidebar styling */
+
+/* Ensure text is above hover effect */
+.sidebar li span, .sidebar li {
+  position: relative;
+  z-index: 1;
+}
+
+/* Main panel styling */
+.main-panel {
+  flex: 3;
+  min-width: 320px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.8s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .onboarding-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    gap: 10px;
+  }
+
+  .sidebar li {
+    flex: 1;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  .main-panel {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar li {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .main-panel {
+    padding: 15px;
+  }
+}
+
+
+/* Onboarding Page H2 Heading */
+.onboarding-header h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  color: #073156;
+  position: relative;
+  padding: 20px 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  /* background: linear-gradient(45deg, #0d6efd, #6610f2); */
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite, fadeIn 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Optional: overlay with image */
+.onboarding-header h2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/public/nav.jpg'); /* replace with your image */
+  background-size: cover;
+  color: white;
+  background-position: center;
+  opacity: 0.3; /* adjust overlay visibility */
+  z-index: 0;
+  animation: overlayFade 8s ease-in-out infinite alternate;
+}
+
+.onboarding-header h2 span,
+.onboarding-header h2 {
+  position: relative;
+  z-index: 1; /* keep text above overlay */
+}
+
+/* Keyframes */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes overlayFade {
+  0% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.05); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .onboarding-header h2 {
+    font-size: 2rem;
+    padding: 15px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .onboarding-header h2 {
+    font-size: 1.6rem;
+    padding: 12px 15px;
+  }
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 260px; /* wider for professional look */
+  min-height: 90vh; /* almost full height */
+  background: linear-gradient(180deg, #0d6efd, #6610f2);
+  border-radius: 15px;
+  padding: 25px 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  position: sticky;
+  top: 20px;
+  animation: slideInLeft 0.8s ease;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
+}
+
+/* Sidebar Menu List */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar ul li {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #f0f0f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar ul li.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.sidebar ul li:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateX(5px);
+  color: #fff;
+}
+
+/* Optional: small animation effect */
+.sidebar ul li::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.2);
+  transition: width 0.3s ease;
+  border-radius: 12px;
+}
+
+.sidebar ul li:hover::before {
+  width: 100%;
+}
+
+/* Keyframes */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+    min-height: 80vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+    min-height: 70vh;
+  }
+}

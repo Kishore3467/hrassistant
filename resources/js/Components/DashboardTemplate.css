@@ -1,0 +1,147 @@
+/* Section & Body */
+.dashboard-section {
+  padding: 60px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-image: url('/images/background-pattern.jpg'); /* optional */
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* Top Heading */
+.feature-main-heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #222;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+/* Feature Container */
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 100%;
+}
+
+/* Left Image */
+.feature-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-image img {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Right Cards */
+.feature-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-item {
+  padding: 25px;
+  margin-bottom: 20px;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.85);
+}
+
+.feature-item h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  text-align: justify;
+  position: relative;
+  color: #007bff;
+}
+
+.feature-item p {
+  text-align: justify;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Active Card */
+.feature-item.active {
+  border-left: 4px solid #ff7f50;
+  background-color: rgba(255,255,255,0.95);
+  transform: translateX(5px);
+}
+
+.feature-item.active h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 60px;
+  height: 4px;
+  background-color: #ff7f50;
+  border-radius: 3px;
+}
+
+/* Hover Effect */
+.feature-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .feature-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-image, .feature-content {
+    width: 100%;
+  }
+
+  .feature-image img {
+    max-width: 100%;
+  }
+}
+/* Top Heading Outside the Section */
+.feature-main-heading-top {
+  font-size: 3.5rem;
+  text-align: center;
+  margin: 50px 680px 30px 20px; /* top, sides, bottom */
+  font-weight: bold;
+  color: #222;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-align: justify;
+}
+
+/* Dashboard Section Styling */
+.dashboard-section {
+  padding: 60px 20px;
+  max-width: 1400px;
+  margin: 0 auto 50px auto; /* margin-bottom to separate from footer */
+  background-image: url('/public/zp-fea-attendimg.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* Rest of your CSS (feature-container, feature-image, feature-content, cards) remains the same */

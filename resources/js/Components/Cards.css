@@ -1,0 +1,39 @@
+.services-wrap{padding:2px}
+.svc-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+  gap:28px;
+  margin-bottom:38px;
+}
+.svc-grid.narrow{grid-template-columns: repeat(auto-fill, minmax(220px,1fr));}
+
+.svc-link{display:block}
+.svc-link.disabled{pointer-events:none;opacity:.9}
+
+.svc-card{
+  height:120px;background:var(--card);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px; transition:transform .15s ease, box-shadow .15s ease;
+}
+.svc-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(31,42,68,.12);}
+
+.svc-icon{
+  width:64px;height:64px;border-radius:18px;display:grid;place-items:center;
+  font-size:28px;font-weight:600;background:#f4f6fb;
+}
+
+/* color accents (soft icon borders) */
+.c-orange{color:#f28c28; border:2px solid #fde1c6}
+.c-amber{color:#e0a100; border:2px solid #ffe8b0}
+.c-sky{color:#31a6e2; border:2px solid #d8f0ff}
+.c-cyan{color:#1db6c0; border:2px solid #cbf4f6}
+.c-yellow{color:#f0b429; border:2px solid #ffefc7}
+.c-green{color:#4bbf6b; border:2px solid #dbf3e3}
+.c-blue{color:#2f7ae5; border:2px solid #d7e6ff}
+.c-pink{color:#d551b2; border:2px solid #ffd8f3}
+.c-rose{color:#ff6b6b; border:2px solid #ffd6d6}
+.c-red{color:#e05656; border:2px solid #ffd1d1}
+
+.svc-label{font-size:14px;color:#33435b}

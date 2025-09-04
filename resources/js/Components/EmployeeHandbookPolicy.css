@@ -1,0 +1,140 @@
+/* Container */
+.privacy-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: #b9d4ee;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: #d4e3e8;
+  border-right: 1px solid #e5e7eb;
+  padding: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-title {
+  font-weight: 600;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-title:hover {
+  background: #f3f4f6;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding-left: 25px;
+  margin: 0;
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.sidebar-list li {
+  padding: 8px 0;
+}
+
+.sidebar-list a {
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.sidebar-list a:hover {
+  color: #2563eb;
+}
+
+.sidebar-list .active {
+  font-weight: 600;
+  color: #2563eb;
+  position: relative;
+}
+
+.sidebar-list .active::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: #2563eb;
+  border-radius: 2px;
+}
+
+/* Main Content */
+.policy-content {
+  flex: 1;
+  padding: 40px;
+  background-image: url('/public/banner4.jpg');
+}
+
+.policy-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.policy-intro {
+  color: #4b5563;
+  margin-bottom: 25px;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 25px 0 15px;
+  color: #111827;
+}
+
+.policy-list {
+  list-style: none;
+  padding: 0;
+}
+
+.policy-list li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Button */
+.download-btn {
+  margin-top: 30px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.download-btn:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+

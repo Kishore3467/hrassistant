@@ -1,0 +1,178 @@
+/* Container layout */
+.onboarding-container {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+  background: #f5f7fa;
+  min-height: 100vh;
+  animation: fadeIn 1s ease;
+}
+
+/* Sidebar progress */
+.progress-sidebar {
+  flex: 1;
+  min-width: 220px;
+  background: linear-gradient(180deg, #0d6efd, #6610f2);
+  border-radius: 15px;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.progress-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.progress-sidebar li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.1);
+}
+
+.progress-sidebar li.active {
+  background: #fff;
+  color: #0d6efd;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+}
+
+/* Form section */
+.form-section {
+  flex: 3;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  min-width: 320px;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Step container */
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-step h2 {
+  text-align: center;
+  color: #0d6efd;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Inputs */
+.form-step input {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+}
+
+.form-step input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 6px 20px rgba(13,110,253,0.2);
+  transform: scale(1.02);
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.buttons button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: #fff;
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.buttons button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  background: linear-gradient(90deg, #6610f2, #0d6efd);
+}
+
+/* JSON preview on final step */
+.form-step pre {
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .onboarding-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .progress-sidebar {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    padding: 15px;
+  }
+
+  .progress-sidebar li {
+    flex: 1;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .form-section {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-step h2 {
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+}

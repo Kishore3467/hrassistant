@@ -1,0 +1,165 @@
+/* Layout */
+.homepage {
+  padding: 20px;
+  background: #f9fafb;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header nav span {
+  margin-left: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Profile */
+.profile-card {
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.role {
+  color: #777;
+  font-size: 14px;
+}
+
+.leave {
+  color: #d97706;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.timer {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.checkin-btn {
+  width: 100%;
+  padding: 10px;
+  background: #16a34a;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Reportees */
+.reportees-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.reportees-card li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.status {
+  color: red;
+  font-size: 13px;
+}
+
+.more-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+/* Greeting */
+.greeting-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #ede9fe, #faf5ff);
+}
+
+.greeting-card h2 {
+  margin: 0;
+}
+
+.sun {
+  font-size: 30px;
+}
+
+/* Work Schedule */
+.work-card .date-range {
+  color: #666;
+  font-size: 14px;
+}
+
+.schedule {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.day {
+  text-align: center;
+  min-width: 60px;
+}
+
+.day strong {
+  display: block;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.day small {
+  font-size: 12px;
+  color: #777;
+}
+
+.day.weekend strong {
+  color: #ea580c;
+}
+
+.day.leave strong {
+  color: #2563eb;
+}
+
+.day.leave small {
+  color: #2563eb;
+}

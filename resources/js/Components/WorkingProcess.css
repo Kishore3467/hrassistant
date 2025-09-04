@@ -1,0 +1,91 @@
+.working-process {
+  padding: 80px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+  left: 80px;
+  width: 1350px;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.section-title span {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: #ffcc00;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Flex container for three columns */
+.working-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* space between columns */
+  flex-wrap: wrap; /* wrap on smaller screens */
+}
+
+.single-work {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  flex: 1; /* grow equally */
+  min-width: 250px; /* prevent too small on mobile */
+  transition: all 0.3s ease-in-out;
+}
+
+.single-work:hover {
+  transform: translateY(-10px);
+  background: rgba(207, 27, 27, 0.1);
+}
+
+.wicon {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.single-work svg {
+  width: 60px;
+  height: 60px;
+  fill: #ffcc00;
+  transition: all 0.3s ease;
+}
+
+.single-work:hover svg {
+  fill: #fff;
+  transform: scale(1.2);
+}
+
+.single-work h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.single-work p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 991px) {
+  .working-cards {
+    flex-direction: column; /* stack on smaller screens */
+    align-items: center;
+  }
+}

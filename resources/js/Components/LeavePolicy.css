@@ -1,0 +1,360 @@
+/* -------------------- GENERAL CONTAINERS -------------------- */
+.lp-container {
+  font-family: 'Inter', sans-serif;
+  background: #f5f6fa;
+  min-height: 100vh;
+  color: #333;
+}
+
+.lp-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+  gap: 20px;
+}
+
+/* -------------------- SIDEBAR -------------------- */
+.lp-sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #0d6efd, #6610f2);
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 90vh;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 20px;
+  left: -300px; /* Added: move slightly from left edge */
+  animation: slideInLeft 0.8s ease;
+}
+
+.lp-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lp-sidebar ul li {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+}
+
+.lp-sidebar ul li.active,
+.lp-sidebar ul li:hover {
+  background: rgba(255,255,255,0.15);
+  font-weight: 600;
+  transform: translateX(5px);
+}
+
+/* -------------------- MAIN PANEL -------------------- */
+.lp-main {
+  flex: 1;
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  animation: fadeIn 0.8s ease;
+  min-width: 320px;
+}
+
+/* -------------------- HEADERS -------------------- */
+.lp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.lp-header h2 {
+  font-size: 1.8rem;
+  color: #0d6efd;
+  background: linear-gradient(to right, #0d6efd, #6610f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFade 1s ease forwards;
+}
+
+.lp-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lp-btn.primary {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.lp-btn.primary:hover {
+  background: #6610f2;
+  transform: scale(1.05);
+}
+
+.lp-btn.edit {
+  background: #ffc107;
+  color: #fff;
+}
+
+.lp-btn.edit:hover {
+  background: #e0a800;
+}
+
+.lp-btn.delete {
+  background: #dc3545;
+  color: #fff;
+}
+
+.lp-btn.delete:hover {
+  background: #b02a37;
+}
+
+.lp-btn.secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.lp-btn.secondary:hover {
+  background: #5a6268;
+}
+
+/* -------------------- TABLE -------------------- */
+.lp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.lp-table th,
+.lp-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.lp-table thead {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  color: #fff;
+}
+
+.lp-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.lp-table tbody tr:hover {
+  background: #f1f3f6;
+  transform: scale(1.01);
+}
+
+.lp-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.lp-table td button {
+  margin-right: 8px; /* Space between Edit and Delete buttons */
+}
+
+.lp-table td button:last-child {
+  margin-right: 0; /* No extra margin for last button */
+}
+
+/* -------------------- MODAL -------------------- */
+.lp-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+  z-index: 999;
+}
+
+.lp-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: slideInTop 0.5s ease;
+}
+
+.lp-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.lp-close:hover {
+  color: #dc3545;
+}
+
+.lp-modal-content input,
+.lp-modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.lp-modal-content input:focus,
+.lp-modal-content select:focus {
+  border-color: #0d6efd;
+  outline: none;
+  box-shadow: 0 0 8px rgba(13,110,253,0.2);
+}
+
+/* -------------------- SWITCH TOGGLE -------------------- */
+.lp-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.lp-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.lp-switch input:checked + .slider {
+  background-color: #0d6efd;
+}
+
+.lp-switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* -------------------- LEAVE FORM -------------------- */
+.leave-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.leave-form input,
+.leave-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+  transition: all 0.3s ease;
+}
+
+.leave-form input:focus,
+.leave-form select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13,110,253,0.2);
+  outline: none;
+}
+
+/* -------------------- KEYFRAMES -------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInTop {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media screen and (max-width: 1024px) {
+  .lp-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .lp-sidebar {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 12px;
+  }
+
+  .lp-main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .lp-sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .lp-sidebar ul li {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+  }
+
+  .lp-main {
+    padding: 15px 10px;
+  }
+
+  .leave-form input,
+  .leave-form select {
+    min-width: 100%;
+  }
+}
