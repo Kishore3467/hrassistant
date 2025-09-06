@@ -49,6 +49,8 @@ Route::post('/candidates', [CandidateController::class, 'store'])
     ->withoutMiddleware([\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class])
     ->name('candidates.store');
 
+    Route::post('/shifts', [ShiftController::class, 'store']);
+
 
 // routes/api.php
 

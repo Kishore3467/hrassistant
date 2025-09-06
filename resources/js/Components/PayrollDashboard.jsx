@@ -1,25 +1,15 @@
+// PayrollDashboard.jsx
 import React, { useState, useEffect } from "react";
-import {
-  FaTachometerAlt,
-  FaUsers,
-  FaMoneyBillWave,
-  FaFileInvoiceDollar,
-  FaChartLine,
-  FaBell,
-  FaEdit,
-  FaTrash,
-  FaPlus,
-} from "react-icons/fa";
-import axios from "axios";
+import { FaTachometerAlt, FaUsers, FaMoneyBillWave, FaEdit, FaTrash, FaPlus, FaBell } from "react-icons/fa";
 import Topbar from "./Topbar";
 import "./PayrollDashboard.css";
 
 const PayrollDashboard = () => {
-  const [employees, setEmployees] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null); // logged-in user
+  const [employees, setEmployees] = useState([]); // payroll records
+  const [currentUser, setCurrentUser] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
     employee_id: "",
+    name: "",
     position: "",
     department: "",
     salary: 0,
@@ -27,60 +17,24 @@ const PayrollDashboard = () => {
     deductions: 0,
     currency: "USD",
   });
-  const [viewSection, setViewSection] = useState("dashboard"); // dashboard | employees | payroll
+  const [viewSection, setViewSection] = useState("dashboard"); // dashboard | employees
   const [editingId, setEditingId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currencies, setCurrencies] = useState([]);
-  const [loginId, setLoginId] = useState(""); // for login form
 
-  // Load employees and currentUser from localStorage
   useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+    const storedEmployees = JSON.parse(localStorage.getItem("payrollRecords")) || [];
     setEmployees(storedEmployees);
 
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     if (storedUser) setCurrentUser(storedUser);
   }, []);
 
-  // Fetch currencies
   useEffect(() => {
-    const fetchCurrencies = async () => {
-      try {
-        const res = await axios.get("https://api.exchangerate.host/symbols");
-        if (res.data && res.data.symbols) {
-          setCurrencies(Object.keys(res.data.symbols));
-        } else {
-          setCurrencies(["USD", "EUR", "GBP", "INR"]);
-        }
-      } catch (err) {
-        console.error("Error fetching currencies:", err);
-        setCurrencies(["USD", "EUR", "GBP", "INR"]);
-      }
-    };
-    fetchCurrencies();
+    // fetch currencies
+    setCurrencies(["USD", "EUR", "INR", "GBP"]);
   }, []);
 
-  // Login handler
-  const handleLogin = () => {
-    const user = employees.find(emp => emp.employee_id === loginId);
-    if (user) {
-      setCurrentUser(user);
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      setLoginId("");
-      setViewSection("dashboard");
-    } else {
-      alert("Employee not found!");
-    }
-  };
-
-  // Logout
-  const handleLogout = () => {
-    setCurrentUser(null);
-    localStorage.removeItem("currentUser");
-    setViewSection("dashboard");
-  };
-
-  // Form change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -91,44 +45,47 @@ const PayrollDashboard = () => {
     });
   };
 
-  // Add / Update employee
-const handleSubmit = (e) => {
-  e.preventDefault();
-  let updatedEmployees;
-  let newEmployee = null;
+  // Auto-fill employee details when selected
+  const handleEmployeeIdChange = (e) => {
+    const empId = e.target.value;
+    const emp = JSON.parse(localStorage.getItem("employeeInfo") || "[]")
+      .find(emp => emp.employeeId === empId);
+    setFormData({
+      ...formData,
+      employee_id: empId,
+      name: emp?.name || "",
+      position: emp?.role || "",
+      department: emp?.department || "",
+    });
+  };
 
-  if (editingId) {
-    updatedEmployees = employees.map(emp =>
-      emp.id === editingId ? { ...formData, id: editingId } : emp
-    );
-    setEditingId(null);
-  } else {
-    newEmployee = { ...formData, id: Date.now() };
-    updatedEmployees = [...employees, newEmployee];
-  }
-
-  localStorage.setItem("employees", JSON.stringify(updatedEmployees));
-  setEmployees(updatedEmployees);
-
-  // Only update currentUser if a new employee is added
-  if (newEmployee && newEmployee.employee_id === formData.employee_id) {
-    setCurrentUser(newEmployee);
-    localStorage.setItem("currentUser", JSON.stringify(newEmployee));
-  }
-
-  setFormData({
-    name: "",
-    employee_id: "",
-    position: "",
-    department: "",
-    salary: 0,
-    bonus: 0,
-    deductions: 0,
-    currency: "USD",
-  });
-  setIsModalOpen(false);
-};
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let updatedEmployees;
+    const recordId = editingId || Date.now();
+    if (editingId) {
+      updatedEmployees = employees.map(emp =>
+        emp.id === editingId ? { ...formData, id: editingId } : emp
+      );
+      setEditingId(null);
+    } else {
+      updatedEmployees = [...employees, { ...formData, id: recordId }];
+    }
+    localStorage.setItem("payrollRecords", JSON.stringify(updatedEmployees));
+    setEmployees(updatedEmployees);
+    setFormData({
+      employee_id: "",
+      name: "",
+      position: "",
+      department: "",
+      salary: 0,
+      bonus: 0,
+      deductions: 0,
+      currency: "USD",
+    });
+    setIsModalOpen(false);
+    setViewSection("employees"); // show employees tab after submit
+  };
 
   const handleEdit = (emp) => {
     setFormData(emp);
@@ -137,13 +94,10 @@ const handleSubmit = (e) => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this employee?")) {
+    if (window.confirm("Are you sure you want to delete this record?")) {
       const updatedEmployees = employees.filter(emp => emp.id !== id);
-      localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+      localStorage.setItem("payrollRecords", JSON.stringify(updatedEmployees));
       setEmployees(updatedEmployees);
-
-      // If currentUser deleted themselves, log out
-      if (currentUser && currentUser.id === id) handleLogout();
     }
   };
 
@@ -157,11 +111,6 @@ const handleSubmit = (e) => {
     }
   };
 
-  // Filter employees to show only logged-in user's data
-  const visibleEmployees = currentUser
-    ? employees.filter(emp => emp.employee_id === currentUser.employee_id)
-    : [];
-
   return (
     <>
       <Topbar />
@@ -172,22 +121,8 @@ const handleSubmit = (e) => {
           {currentUser && (
             <nav>
               <ul>
-                <li onClick={() => setViewSection("dashboard")}>
-                  <FaTachometerAlt /> Dashboard
-                </li>
-                <li onClick={() => setViewSection("employees")}>
-                  <FaUsers /> Employees
-                </li>
-                <li onClick={() => setViewSection("payroll")}>
-                  <FaMoneyBillWave /> Payroll
-                </li>
-                <li>
-                  <FaFileInvoiceDollar /> Invoices
-                </li>
-                <li>
-                  <FaChartLine /> Reports
-                </li>
-                <li onClick={handleLogout}>Logout</li>
+                <li onClick={() => setViewSection("dashboard")}><FaTachometerAlt /> Dashboard</li>
+                <li onClick={() => setViewSection("employees")}><FaUsers /> Employees</li>
               </ul>
             </nav>
           )}
@@ -205,38 +140,22 @@ const handleSubmit = (e) => {
             )}
           </header>
 
-          {/* Login Form */}
-          {!currentUser && (
-            <div className="pd-login-form">
-              <h2>Employee Login</h2>
-              <input
-                placeholder="Enter Employee ID"
-                value={loginId}
-                onChange={e => setLoginId(e.target.value)}
-              />
-              <button className="pd-primary-btn" onClick={handleLogin}>Login</button>
-            </div>
-          )}
-
-          {/* Dashboard */}
-          {currentUser && viewSection === "dashboard" && (
+          {/* Dashboard Section */}
+          {viewSection === "dashboard" && (
             <div className="pd-dashboard-actions">
               <button className="pd-primary-btn" onClick={() => setIsModalOpen(true)}>
-                <FaPlus /> Add / Update Payroll
+                <FaPlus /> Add Payroll
               </button>
             </div>
           )}
 
-          {/* Employees Table */}
-          {currentUser && viewSection === "employees" && (
+          {/* Employees Tab */}
+          {viewSection === "employees" && (
             <div className="pd-employees-container">
-              <button onClick={() => setViewSection("dashboard")} className="pd-primary-btn pd-back-btn">
-                Back to Dashboard
-              </button>
               <table className="pd-employee-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
+                    <th>Employee</th>
                     <th>Employee ID</th>
                     <th>Position</th>
                     <th>Department</th>
@@ -248,7 +167,7 @@ const handleSubmit = (e) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {visibleEmployees.map(emp => (
+                  {employees.length ? employees.map(emp => (
                     <tr key={emp.id}>
                       <td>{emp.name}</td>
                       <td>{emp.employee_id}</td>
@@ -259,64 +178,48 @@ const handleSubmit = (e) => {
                       <td>{formatCurrency(emp.deductions, emp.currency)}</td>
                       <td>{formatCurrency(calculateNetPay(emp), emp.currency)}</td>
                       <td>
-                        <button className="pd-action-btn pd-edit" onClick={() => handleEdit(emp)}><FaEdit /></button>
-                        <button className="pd-action-btn pd-delete" onClick={() => handleDelete(emp.id)}><FaTrash /></button>
+                        <button className="pd-action-btn pd-edit" onClick={() => handleEdit(emp)}>Edit</button>
+                        <button className="pd-action-btn pd-delete" onClick={() => handleDelete(emp.id)}>Delete</button>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          {/* Payroll Section */}
-          {currentUser && viewSection === "payroll" && (
-            <div className="pd-invoices-container">
-              <button onClick={() => setViewSection("dashboard")} className="pd-primary-btn pd-back-btn">
-                Back to Dashboard
-              </button>
-              <h2>Payroll Invoices</h2>
-              <table className="pd-employee-table">
-                <thead>
-                  <tr>
-                    <th>Employee</th>
-                    <th>Employee ID</th>
-                    <th>Net Pay</th>
-                    <th>Currency</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {visibleEmployees.map(emp => (
-                    <tr key={emp.id}>
-                      <td>{emp.name}</td>
-                      <td>{emp.employee_id}</td>
-                      <td>{formatCurrency(calculateNetPay(emp), emp.currency)}</td>
-                      <td>{emp.currency}</td>
-                    </tr>
-                  ))}
+                  )) : (
+                    <tr><td colSpan="9" style={{ textAlign: "center" }}>No payroll records yet.</td></tr>
+                  )}
                 </tbody>
               </table>
             </div>
           )}
 
           {/* Modal */}
-          {isModalOpen && currentUser && (
+          {isModalOpen && (
             <div className="pd-modal-overlay">
               <div className="pd-modal">
-                <h2>{editingId ? "Edit Employee" : "Add / Update Payroll"}</h2>
-                <form onSubmit={handleSubmit} className="pd-modal-form">
-                  <input name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
-                  <input name="employee_id" placeholder="Employee ID" value={formData.employee_id} onChange={handleChange} required />
-                  <input name="position" placeholder="Position" value={formData.position} onChange={handleChange} required />
-                  <input name="department" placeholder="Department" value={formData.department} onChange={handleChange} required />
-                  <input type="number" name="salary" placeholder="Salary" value={formData.salary} onChange={handleChange} />
-                  <input type="number" name="bonus" placeholder="Bonus" value={formData.bonus} onChange={handleChange} />
-                  <input type="number" name="deductions" placeholder="Deductions" value={formData.deductions} onChange={handleChange} />
-                  <select name="currency" value={formData.currency} onChange={handleChange} required>
-                    {currencies.map(cur => (
-                      <option key={cur} value={cur}>{cur}</option>
+                <h2>{editingId ? "Edit Payroll" : "Add Payroll"}</h2>
+                <form onSubmit={handleSubmit}>
+                  <select
+                    name="employee_id"
+                    value={formData.employee_id}
+                    onChange={handleEmployeeIdChange}
+                    required
+                  >
+                    <option value="">Select Employee</option>
+                    {JSON.parse(localStorage.getItem("employeeInfo") || "[]").map(emp => (
+                      <option key={emp.employeeId} value={emp.employeeId}>
+                        {emp.name} ({emp.employeeId})
+                      </option>
                     ))}
                   </select>
+
+                  <input name="name" value={formData.name} readOnly placeholder="Full Name" />
+                  <input name="position" value={formData.position} readOnly placeholder="Position" />
+                  <input name="department" value={formData.department} readOnly placeholder="Department" />
+                  <input type="number" name="salary" value={formData.salary} onChange={handleChange} placeholder="Salary" />
+                  <input type="number" name="bonus" value={formData.bonus} onChange={handleChange} placeholder="Bonus" />
+                  <input type="number" name="deductions" value={formData.deductions} onChange={handleChange} placeholder="Deductions" />
+                  <select name="currency" value={formData.currency} onChange={handleChange}>
+                    {currencies.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+                  </select>
+
                   <div className="pd-modal-buttons">
                     <button type="button" className="pd-cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
                     <button type="submit" className="pd-primary-btn">{editingId ? "Update" : "Submit"}</button>

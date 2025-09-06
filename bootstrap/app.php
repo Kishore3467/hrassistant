@@ -17,11 +17,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web([
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class, // use correct namespace
         ]);
 
-        // ✅ Sanctum stateful support
+        // ✅ Sanctum support
         $middleware->statefulApi();
+
+        $middleware->alias([
+            'auth:sanctum' => EnsureFrontendRequestsAreStateful::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

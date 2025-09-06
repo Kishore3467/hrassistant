@@ -31,11 +31,13 @@ const GeneralAnnouncements = () => {
     e.preventDefault();
     if (!formData.title || !formData.message) return;
 
-    const newAnnouncement = {
-      id: Date.now(),
-      ...formData,
-      date: new Date().toLocaleString(),
-    };
+  const newAnnouncement = {
+  id: Date.now(),
+  ...formData,
+  date: new Date().toLocaleString(),
+  employeeId: targetEmployeeId, // assign HR chooses the employee
+};
+
 
     const updated = [newAnnouncement, ...announcements];
     setAnnouncements(updated);

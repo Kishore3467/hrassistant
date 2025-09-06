@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fe319737-346d-4fbd-8249-bfc2ccc215e7/resourceGroups/ai-hrassitant/providers/Microsoft.Web/sites/hrcopilot",
+    "appService.deploySubpath": ".",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}

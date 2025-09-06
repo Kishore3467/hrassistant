@@ -3,6 +3,9 @@ import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
+import { EmployeeProvider } from "./EmployeeContext";
+
+
 import "./Components/base.css";
 import "./Components/layout.css";
 import "./Components/sidebar.css";
@@ -137,6 +140,7 @@ function App() {
           <Route path="/leave-status" element={<LeaveStatus />} />
           <Route path="/employee-profile" element={<EmployeeProfile />} />
           
+   
 
           {/* Redirect unknown routes */}
           <Route path="*" element={<Navigate to="/" />} />

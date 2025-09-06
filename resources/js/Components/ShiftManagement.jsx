@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaPlus,
   FaEdit,
@@ -7,20 +7,13 @@ import {
   FaFilter,
   FaSpinner,
 } from "react-icons/fa";
-import axios from "axios";
 import "./ShiftManagement.css";
-import { UserContext } from "../UserContext";
-
-const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
-  withCredentials: true,
-});
 
 export default function ShiftManagement() {
-  const { currentUser } = useContext(UserContext);
+  const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = currentUserData?.email || "guest";
 
   const [shifts, setShifts] = useState([]);
-  const [employees, setEmployees] = useState([]);
   const [newShift, setNewShift] = useState({
     date: "",
     name: "",
@@ -29,82 +22,77 @@ export default function ShiftManagement() {
     status: "Assigned",
     employee_id: "",
   });
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentShiftId, setCurrentShiftId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentShiftId, setCurrentShiftId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [employees, setEmployees] = useState([]);
 
-  // Fetch employees from database
-  const fetchEmployees = async () => {
-    if (!currentUser) return;
-    try {
-      const res = await api.get(`/employees?companyId=${currentUser.companyId}`);
-      if (Array.isArray(res.data)) setEmployees(res.data);
-      else setEmployees([]);
-    } catch (err) {
-      console.error(err);
-      alert("Failed to fetch employees");
-    }
-  };
-
-  // Fetch shifts from database
-  const fetchShifts = async () => {
-    if (!currentUser) return;
+  // 🔹 Load shifts for current user
+  const fetchShifts = () => {
     setLoading(true);
-    try {
-      const res = await api.get(`/shifts?companyId=${currentUser.companyId}`);
-      if (Array.isArray(res.data)) setShifts(res.data);
-      else setShifts([]);
-    } catch (err) {
-      console.error(err);
-      alert("Failed to fetch shifts");
-    }
-    setLoading(false);
+    setTimeout(() => {
+      const data = JSON.parse(localStorage.getItem("shifts")) || {};
+      setShifts(data[currentUser] || []);
+      setLoading(false);
+    }, 500);
   };
 
   useEffect(() => {
-    fetchEmployees();
+    if (currentUserData) {
+      const stored = localStorage.getItem(`employees_${currentUserData.email}`);
+      if (stored) {
+        setEmployees(JSON.parse(stored));
+      }
+    }
     fetchShifts();
-  }, [currentUser]);
+  }, []);
 
-  // Save or update shift in database
-  const handleSubmit = async (e) => {
+  // 🔹 Save shifts (per user)
+  const saveShifts = (updatedShifts) => {
+    const allShifts = JSON.parse(localStorage.getItem("shifts")) || {};
+    allShifts[currentUser] = updatedShifts;
+    localStorage.setItem("shifts", JSON.stringify(allShifts));
+    setShifts(updatedShifts);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!newShift.date || !newShift.name || !newShift.time) {
       return alert("Please fill all required fields");
     }
 
-    try {
-      const payload = {
+    if (isEditing) {
+      const updatedShifts = shifts.map((s) =>
+        s.id === currentShiftId
+          ? {
+              ...newShift,
+              id: currentShiftId,
+              companyId: currentUserData.companyId,
+            }
+          : s
+      );
+      saveShifts(updatedShifts);
+    } else {
+      const newEntry = {
         ...newShift,
-        company_id: currentUser.companyId,
+        id: Date.now(),
+        companyId: currentUserData.companyId,
       };
-
-      if (isEditing) {
-        await api.put(`/shifts/${currentShiftId}`, payload);
-        alert("✅ Shift updated successfully!");
-      } else {
-        await api.post("/shifts", payload);
-        alert("✅ Shift added successfully!");
-      }
-
-      setIsEditing(false);
-      setCurrentShiftId(null);
-      setNewShift({
-        date: "",
-        name: "",
-        time: "",
-        role: "Cashier",
-        status: "Assigned",
-        employee_id: "",
-      });
-
-      fetchShifts(); // Refresh table
-    } catch (err) {
-      console.error(err.response?.data || err);
-      alert("Failed to save shift. Check console for details.");
+      saveShifts([...shifts, newEntry]);
     }
+
+    // Reset
+    setIsEditing(false);
+    setNewShift({
+      date: "",
+      name: "",
+      time: "",
+      role: "Cashier",
+      status: "Assigned",
+      employee_id: "",
+    });
   };
 
   const editShift = (shift) => {
@@ -120,18 +108,13 @@ export default function ShiftManagement() {
     setCurrentShiftId(shift.id);
   };
 
-  const deleteShift = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this shift?")) return;
-    try {
-      await api.delete(`/shifts/${id}`);
-      fetchShifts();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to delete shift");
+  const deleteShift = (id) => {
+    if (window.confirm("Are you sure you want to delete this shift?")) {
+      const updatedShifts = shifts.filter((s) => s.id !== id);
+      saveShifts(updatedShifts);
     }
   };
 
-  // Filtered shifts
   const filteredShifts = shifts.filter((shift) => {
     const matchesSearch =
       shift.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -148,9 +131,13 @@ export default function ShiftManagement() {
   return (
     <div className="sm-container">
       <header className="sm-header">
-        <h1>Shift Management</h1>
-        <p className="sm-subtitle">Efficiently manage and assign employee work schedules</p>
-        <p className="sm-user">👤 Logged in as: {currentUser?.name || "Guest"}</p>
+        <div>
+          <h1>Shift Management</h1>
+          <p className="sm-subtitle">
+            Efficiently manage and assign employee work schedules
+          </p>
+          <p className="sm-user">👤 Logged in as: {currentUser}</p>
+        </div>
       </header>
 
       {/* Search & Filter */}
@@ -179,50 +166,61 @@ export default function ShiftManagement() {
         </div>
       </div>
 
-      {/* Add/Edit Form */}
+      {/* Add / Edit Form */}
       <form className="sm-form" onSubmit={handleSubmit}>
         <div className="sm-form-group">
           <label>Date</label>
           <input
             type="date"
+            name="date"
             value={newShift.date}
             onChange={(e) => setNewShift({ ...newShift, date: e.target.value })}
             required
           />
         </div>
 
+        {/* Employee Dropdown */}
         <div className="sm-form-group">
           <label>Employee Name</label>
-          <select
-            value={newShift.name}
-            onChange={(e) => {
-              const selectedName = e.target.value;
-              const selectedEmp = employees.find((emp) => emp.name === selectedName);
-              setNewShift({
-                ...newShift,
-                name: selectedName,
-                employee_id: selectedEmp ? selectedEmp.employee_id : "",
-              });
-            }}
-            required
-          >
-            <option value="">Select Employee</option>
-            {employees.map((emp) => (
-              <option key={emp.employee_id} value={emp.name}>
-                {emp.name}
-              </option>
-            ))}
-          </select>
+        <select
+  name="name"
+  value={newShift.name}
+  onChange={(e) => {
+    const selectedName = e.target.value;
+    const selectedEmp = employees.find((emp) => emp.name === selectedName);
+    setNewShift({
+      ...newShift,
+      name: selectedName,
+      employee_id: selectedEmp ? (selectedEmp.employeeId || selectedEmp.id) : "", // ✅ fallback
+    });
+  }}
+  required
+>
+  <option value="">Select Employee</option>
+  {employees.map((emp) => (
+    <option key={emp.employeeId || emp.id} value={emp.name}>
+      {emp.name}
+    </option>
+  ))}
+</select>
+
         </div>
 
+        {/* Auto-filled Employee ID */}
         <div className="sm-form-group">
           <label>Employee ID</label>
-          <input type="text" value={newShift.employee_id} readOnly />
+          <input
+            type="text"
+            name="employee_id"
+            value={newShift.employee_id}
+            readOnly
+          />
         </div>
 
         <div className="sm-form-group">
           <label>Shift Time</label>
           <select
+            name="time"
             value={newShift.time}
             onChange={(e) => setNewShift({ ...newShift, time: e.target.value })}
             required
@@ -237,6 +235,7 @@ export default function ShiftManagement() {
         <div className="sm-form-group">
           <label>Role</label>
           <select
+            name="role"
             value={newShift.role}
             onChange={(e) => setNewShift({ ...newShift, role: e.target.value })}
           >
@@ -250,6 +249,7 @@ export default function ShiftManagement() {
         <div className="sm-form-group">
           <label>Status</label>
           <select
+            name="status"
             value={newShift.status}
             onChange={(e) => setNewShift({ ...newShift, status: e.target.value })}
           >
@@ -300,15 +300,31 @@ export default function ShiftManagement() {
                     </span>
                   </td>
                   <td>
-                    <button onClick={() => editShift(shift)}><FaEdit /></button>
-                    <button onClick={() => deleteShift(shift.id)}><FaTrash /></button>
+                    <div className="sm-actions">
+                      <button
+                        type="button"
+                        className="sm-edit"
+                        onClick={() => editShift(shift)}
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        type="button"
+                        className="sm-delete"
+                        onClick={() => deleteShift(shift.id)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
             ) : (
               !loading && (
                 <tr>
-                  <td colSpan="7">No shifts found</td>
+                  <td colSpan="7" className="sm-no-results">
+                    No shifts found matching your criteria
+                  </td>
                 </tr>
               )
             )}

@@ -3,16 +3,11 @@
 return [
 
     'defaults' => [
-        'guard' => 'web', // change from 'company' to 'web'
-        'passwords' => 'users',
+        'guard' => 'company',
+        'passwords' => 'companies',
     ],
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-
         'company' => [
             'driver' => 'session',
             'provider' => 'companies',
@@ -20,11 +15,6 @@ return [
     ],
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
         'companies' => [
             'driver' => 'eloquent',
             'model' => App\Models\Company::class,
@@ -32,13 +22,6 @@ return [
     ],
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-
         'companies' => [
             'provider' => 'companies',
             'table' => 'password_reset_tokens',
@@ -49,3 +32,4 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 ];
+
