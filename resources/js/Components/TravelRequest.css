@@ -1,84 +1,477 @@
+/* TravelRequest.css */
+
+/* Variables for consistent theming */
+:root {
+  --primary: #4361ee;
+  --secondary: #3a0ca3;
+  --accent: #f72585;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --success: #4cc9f0;
+  --warning: #f9c74f;
+  --danger: #f94144;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+}
+
+/* Background animations and elements */
+.travel-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234361ee' fill-opacity='0.1' d='M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,122.7C672,128,768,160,864,170.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+  animation: moveClouds 20s linear infinite;
+}
+
+.airplane {
+  position: absolute;
+  top: 20%;
+  right: -100px;
+  font-size: 2rem;
+  animation: fly 30s linear infinite;
+}
+
+.mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%233a0ca3' fill-opacity='0.1' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,224C672,213,768,171,864,165.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+}
+
+/* Keyframe animations */
+@keyframes moveClouds {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1440px;
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-50vw) translateY(20px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(-100vw) translateY(0) rotate(0);
+  }
+  75% {
+    transform: translateX(-150vw) translateY(-20px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(-200vw) translateY(0) rotate(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Main container */
 .travel-container {
-  display: flex;
-  gap: 20px;
-  padding: 30px;
-  background: #f9f9fb;
-  min-height: 100vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-/* Form card */
-.travel-form-card {
-  flex: 1;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+.travel-container.fade-in {
+  opacity: 1;
 }
 
-.travel-form-card h2 {
-  margin-bottom: 20px;
+.travel-header {
   text-align: center;
+  margin-bottom: 2rem;
+  color: var(--dark);
 }
 
+.travel-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.travel-header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.travel-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+}
+
+/* Card styling */
+.travel-form-card, .travel-list-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.travel-form-card:hover, .travel-list-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.travel-form-card.slide-in-left {
+  animation: slideInLeft 0.7s ease forwards;
+}
+
+.travel-list-card.slide-in-right {
+  animation: slideInRight 0.7s ease forwards;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.card-header h2 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.form-icon {
+  font-size: 2rem;
+}
+
+.requests-count {
+  background: var(--primary);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Form styling */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+label {
   display: block;
+  margin-bottom: 0.5rem;
   font-weight: 600;
-  margin-bottom: 5px;
+  color: var(--dark);
 }
 
-.form-group input {
+input, textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--light-gray);
   border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-.btn-submit {
-  width: 100%;
-  padding: 12px;
-  background: #00bcd4;
-  border: none;
-  color: #fff;
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+/* Transport options */
+.transport-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.transport-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid var(--light-gray);
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.transport-option:hover {
+  border-color: var(--primary);
+}
+
+.transport-option input[type="radio"] {
+  display: none;
+}
+
+.transport-option input[type="radio"]:checked + .transport-icon {
+  transform: scale(1.2);
+}
+
+.transport-option input[type="radio"]:checked ~ .transport-label {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.transport-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.transport-label {
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* Submit button */
+.btn-submit {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
   font-weight: 600;
-  transition: 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
 }
 
 .btn-submit:hover {
-  background: #0097a7;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
 }
 
-/* Travel request list */
-.travel-list-card {
-  flex: 2;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+.btn-icon {
+  font-size: 1.2rem;
 }
 
-.travel-list-card h2 {
-  margin-bottom: 15px;
-}
-
-.travel-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.travel-table th,
-.travel-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+/* Request list styling */
+.empty-state {
   text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray);
 }
 
-.travel-table th {
-  background: #f1f1f1;
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.requests-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.request-item {
+  background: var(--light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease;
+  border-left: 4px solid var(--primary);
+}
+
+.request-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.employee-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.employee-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.employee-name {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.transport-type {
+  font-size: 1.5rem;
+}
+
+.request-destination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.destination-icon {
+  font-size: 1.2rem;
+}
+
+.request-dates {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.date-range {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.date-value {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.request-purpose {
+  color: var(--gray);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.request-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.request-cost {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.request-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--light-gray);
+  color: var(--dark);
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .travel-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .travel-container {
+    padding: 1rem;
+  }
+  
+  .travel-form-card, .travel-list-card {
+    padding: 1.5rem;
+  }
+  
+  .transport-options {
+    flex-wrap: wrap;
+  }
 }

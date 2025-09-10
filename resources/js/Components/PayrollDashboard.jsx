@@ -1,6 +1,6 @@
 // PayrollDashboard.jsx
 import React, { useState, useEffect } from "react";
-import { FaTachometerAlt, FaUsers, FaMoneyBillWave, FaEdit, FaTrash, FaPlus, FaBell } from "react-icons/fa";
+import { FaTachometerAlt, FaUsers, FaMoneyBillWave, FaEdit, FaTrash, FaPlus, FaBell, FaChartLine, FaChartPie, FaHistory } from "react-icons/fa";
 import Topbar from "./Topbar";
 import "./PayrollDashboard.css";
 
@@ -111,6 +111,25 @@ const PayrollDashboard = () => {
     }
   };
 
+  // Calculate analytics data
+  const payrollAnalytics = {
+    totalPayroll: employees.reduce((sum, emp) => sum + (emp.salary + emp.bonus - emp.deductions), 0),
+    averageSalary: employees.length ? employees.reduce((sum, emp) => sum + emp.salary, 0) / employees.length : 0,
+    totalEmployees: employees.length,
+    upcomingPayments: employees.filter(emp => {
+      // Simple logic to find employees with payment due in next 7 days
+      return Math.random() > 0.7; // Placeholder logic
+    }).length
+  };
+
+  // Sample recent activity data
+  const recentActivities = [
+    { id: 1, title: "Payroll processed for John Doe", time: "2 hours ago", icon: <FaMoneyBillWave /> },
+    { id: 2, title: "New employee added to payroll", time: "Yesterday", icon: <FaUsers /> },
+    { id: 3, title: "Salary revision for Jane Smith", time: "2 days ago", icon: <FaEdit /> },
+    { id: 4, title: "Monthly payroll report generated", time: "3 days ago", icon: <FaChartLine /> }
+  ];
+
   return (
     <>
       <Topbar />
@@ -135,18 +154,88 @@ const PayrollDashboard = () => {
             {currentUser && (
               <div className="pd-topbar-right">
                 <FaBell size={20} className="pd-icon" />
-                <span className="pd-profile">{currentUser.name}</span>
+                <span className="pd-profile">{currentUser.name.charAt(0)}</span>
               </div>
             )}
           </header>
 
           {/* Dashboard Section */}
           {viewSection === "dashboard" && (
-            <div className="pd-dashboard-actions">
-              <button className="pd-primary-btn" onClick={() => setIsModalOpen(true)}>
-                <FaPlus /> Add Payroll
-              </button>
-            </div>
+            <>
+              <div className="pd-dashboard-actions">
+                <button className="pd-primary-btn" onClick={() => setIsModalOpen(true)}>
+                  <FaPlus /> Add Payroll
+                </button>
+              </div>
+
+              {/* Analytics Cards */}
+              <div className="pd-dashboard-analytics">
+                <div className="pd-stat-card">
+                  <FaMoneyBillWave className="pd-stat-icon" />
+                  <div className="pd-stat-value">
+                    {formatCurrency(payrollAnalytics.totalPayroll, "USD")}
+                  </div>
+                  <div className="pd-stat-label">Total Payroll</div>
+                </div>
+
+                <div className="pd-stat-card">
+                  <FaChartPie className="pd-stat-icon" />
+                  <div className="pd-stat-value">
+                    {formatCurrency(payrollAnalytics.averageSalary, "USD")}
+                  </div>
+                  <div className="pd-stat-label">Average Salary</div>
+                </div>
+
+                <div className="pd-stat-card">
+                  <FaUsers className="pd-stat-icon" />
+                  <div className="pd-stat-value">{payrollAnalytics.totalEmployees}</div>
+                  <div className="pd-stat-label">Employees</div>
+                </div>
+
+                <div className="pd-stat-card">
+                  <FaBell className="pd-stat-icon" />
+                  <div className="pd-stat-value">{payrollAnalytics.upcomingPayments}</div>
+                  <div className="pd-stat-label">Upcoming Payments</div>
+                </div>
+              </div>
+
+              {/* Charts Section */}
+              <div className="pd-charts-container">
+                <div className="pd-chart-card">
+                  <div className="pd-chart-header">
+                    <div className="pd-chart-title">Payroll Distribution</div>
+                    <div className="pd-chart-actions">
+                      <button className="pd-chart-action-btn">View Report</button>
+                    </div>
+                  </div>
+                  <div className="pd-chart-placeholder">
+                    Payroll Distribution Chart (Integration needed)
+                  </div>
+                </div>
+
+                <div className="pd-activity-card">
+                  <div className="pd-chart-header">
+                    <div className="pd-chart-title">Recent Activity</div>
+                    <div className="pd-chart-actions">
+                      <button className="pd-chart-action-btn">
+                        <FaHistory />
+                      </button>
+                    </div>
+                  </div>
+                  <ul className="pd-activity-list">
+                    {recentActivities.map(activity => (
+                      <li key={activity.id} className="pd-activity-item">
+                        <div className="pd-activity-icon">{activity.icon}</div>
+                        <div className="pd-activity-content">
+                          <div className="pd-activity-title">{activity.title}</div>
+                          <div className="pd-activity-time">{activity.time}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
           )}
 
           {/* Employees Tab */}

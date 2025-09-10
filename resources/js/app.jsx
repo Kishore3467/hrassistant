@@ -11,6 +11,7 @@ import "./Components/layout.css";
 import "./Components/sidebar.css";
 import "./Components/topbar.css";
 import "./Components/cards.css";
+import Chatbot from "./Components/ChatBot";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -76,9 +77,22 @@ function App() {
 
   return (
     <div className="App">
+      <div className="app-container">
+        <header className="app-header">
+          <h1>HRCoPilot - AI HR Assistant</h1>
+          <p>Your intelligent HR support chatbot</p>
+        </header>
+        
+        <main className="app-main">
+          {/* <Chatbot /> */}
+        </main>
+        
+        <footer className="app-footer">
+          <p>Powered by AI • HRCoPilot Project • 2024</p>
+        </footer>
+      </div>
       <Router>
         <Header />
-        <br /><br /><br /><br />
 
         <Routes>
           {/* Public routes */}
@@ -149,7 +163,7 @@ function App() {
         <Footer />
 
         {/* WhatsApp components */}
-        <WhatsAppButton
+        {/* <WhatsAppButton
           phone="919876543210"
           message="Hi, I want to get in touch with you!"
         />
@@ -157,7 +171,7 @@ function App() {
           phone="919876543210"
           message="Hello! I want to get in touch with you."
           delay={3000}
-        />
+        /> */}
 
         {/* Offer Letter popup */}
         {showOfferLetterForm && (
